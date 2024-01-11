@@ -11,6 +11,10 @@ import com.example.recyclerviewexample.model.Planet
 
 class PlanetAdapter(private val planetList: ArrayList<Planet>) : RecyclerView.Adapter<PlanetAdapter.PlanetViewHolder>(){
 
+    private var onClickListener: OnClickListener? = null
+    interface OnClickListener{
+        fun onClick(planet: Planet)
+    }
     class PlanetViewHolder(itemView: View):RecyclerView.ViewHolder(itemView){
         val textViewName : TextView
         val textViewType: TextView
@@ -22,10 +26,14 @@ class PlanetAdapter(private val planetList: ArrayList<Planet>) : RecyclerView.Ad
             imageViewPlanet = itemView.findViewById(R.id.imageViewPlanet)
         }
 
-        fun bind(planet: Planet){
+        fun bind(planet: Planet, onClickListener: OnClickListener?,){
             textViewName.text = planet.name
             textViewType.text = planet.type
             imageViewPlanet.setImageResource(planet.image)
+
+            itemView.setOnClickListener {
+                onClickListener?.onClick(planet)
+            }
         }
     }
 
@@ -41,7 +49,11 @@ class PlanetAdapter(private val planetList: ArrayList<Planet>) : RecyclerView.Ad
         //holder.textViewType.text = planetList[position].type
         //holder.imageViewPlanet.setImageResource(planetList[position].image)
 
-        holder.bind(planetList[position])
+        holder.bind(planetList[position], onClickListener)
+    }
+
+    fun setOnItemClickListener(onClickListener: OnClickListener){
+        this.onClickListener = onClickListener
     }
 
 

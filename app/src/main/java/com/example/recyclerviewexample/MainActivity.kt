@@ -2,6 +2,7 @@ package com.example.recyclerviewexample
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.recyclerviewexample.adapters.PlanetAdapter
@@ -18,6 +19,12 @@ class MainActivity : AppCompatActivity() {
         recyclerViewPlanets.adapter = planetAdapter
 
         recyclerViewPlanets.layoutManager = LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
+
+        planetAdapter.setOnItemClickListener(object : PlanetAdapter.OnClickListener{
+            override fun onClick(planet: Planet){
+                Toast.makeText(applicationContext, planet.name, Toast.LENGTH_LONG).show()
+            }
+        })
     }
 
 
