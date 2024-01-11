@@ -7,6 +7,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.recyclerviewexample.adapters.PlanetAdapter
 import com.example.recyclerviewexample.model.Planet
+import com.leshchenko.circularlayoutmanagerlib.CircularRecyclerLayoutManager
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -19,6 +20,20 @@ class MainActivity : AppCompatActivity() {
         recyclerViewPlanets.adapter = planetAdapter
 
         recyclerViewPlanets.layoutManager = LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
+        //https://android-arsenal.com/details/1/8358
+        //https://android-arsenal.com/details/1/7526
+        //https://android-arsenal.com/details/1/7855
+
+
+       /* recyclerViewPlanets.layoutManager = CircularRecyclerLayoutManager(
+            canScrollHorizontally = true,
+            itemsPerCircle = 4,
+            anglePerItem = 100.0,
+            firstCircleRadius = 200.0,
+            angleStepForCircles = 45.0,
+            isClockwise = false,
+            initialAngle = 180.0
+        )*/
 
         planetAdapter.setOnItemClickListener(object : PlanetAdapter.OnClickListener{
             override fun onClick(planet: Planet){
