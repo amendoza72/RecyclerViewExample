@@ -2,7 +2,9 @@ package com.example.recyclerviewexample
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.example.recyclerviewexample.adapters.PlanetAdapter
 import com.example.recyclerviewexample.model.Planet
 
 class MainActivity : AppCompatActivity() {
@@ -12,6 +14,10 @@ class MainActivity : AppCompatActivity() {
 
         var recyclerViewPlanets: RecyclerView = findViewById(R.id.recyclerViewPlanets)
         var planetList = generatePlanets()
+        var planetAdapter = PlanetAdapter(planetList)
+        recyclerViewPlanets.adapter = planetAdapter
+
+        recyclerViewPlanets.layoutManager = LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
     }
 
 
